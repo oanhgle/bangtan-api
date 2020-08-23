@@ -1,7 +1,7 @@
 /* fetch quotes */
 function getRandom()
 {
-    fetch('http://localhost:3000/quote/random')
+    fetch('https://bts-quotes-api.herokuapp.com/quote/random')
         .then(response => response.json())
         .then(data => {
             document.getElementById('quote').innerHTML = data.quote;
@@ -18,7 +18,7 @@ function getRandom()
 /* fetch quote's info */
 function getInfo(quote)
 {
-    fetch('http://localhost:3000/quotes')
+    fetch('https://bts-quotes-api.herokuapp.com/quotes')
         .then(response => response.json())
         .then(data => {
             data.forEach(function(data){
