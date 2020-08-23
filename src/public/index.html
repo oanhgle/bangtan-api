@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BTS QUOTES API</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/unicons.css">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" href="css/tooplate-style.css">
+    
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"> BTS QUOTES API </a>
+            <div style="text-align: center;">
+                <a class="small-text navbar-brand" href="http://localhost:3000/i-purple-you" style= "color: #c8b9bd;"> Purple <span class="iconify" data-icon="et:heart" data-inline="false"></span> me </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-lg-auto">
+                    <div class="ml-lg-4">
+                      <div class="color-mode d-lg-flex justify-content-center align-items-center">
+                        <i class="color-mode-icon"></i>
+                        Color mode
+                      </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- LIVE DEMO -->
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
+                    <div class="about-text">
+                        <small class="small-text">Live<span class="mobile-block"> Demo</span></small>
+                        <h1 class="animated animated-text">
+                            <span class="mr-2">Get a random</span>
+                                <div class="animated-info">
+                                    <span class="animated-item">Quote</span>
+                                    <span class="animated-item">Message</span>
+                                    <span class="animated-item">Text</span>
+                                </div>
+                        </h1>
+
+                        <p>" <a id= "quote">No one knows tomorrow, but today we are the dream we followed yesterday</a> "</p>
+                        <p>&#128156;</p><a id= "author">Suga</a></p>
+                        <p>(<a id= "info">PUMA TURIN CF</a>)</p>
+                        
+                        <div class="custom-btn-group mt-4">
+                          <a href="http://twitter.com/intent/tweet/?text" class="btn mr-lg-2 custom-btn" id= "shareOnTW"><span class="iconify" data-icon="uil-twitter-alt" data-inline="false"></span>&nbsp; Tweet </a>
+                          <a href="#button" class="btn custom-btn custom-btn-bg" onclick = "getRandom()">New quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="about-image svg">
+                        <img src="https://www.pngkey.com/png/full/958-9580680_bts-logo-png-logo-de-bts-png.png" class="img-fluid" alt="bts logo">
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- API DOCUMENTATION -->
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+      <div class="container">
+          <div class="row">
+              
+              <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
+                  <div class="about-text">
+                      <small class="small-text">Usage <span class="mobile-block"></span></small>
+                      <h1 class="animated animated-text">
+                          <span class="mr-2">API</span>
+                              <div class="animated-info">
+                                  <span class="animated-item">Endpoints</span>
+                                  <span class="animated-item">Routes</span>
+                                  <span class="animated-item">Endpoints</span>
+                                  <span class="animated-item">Routes</span>
+                              </div>
+                      </h1>
+                      
+                      <div class="custom-btn-group mt-4">
+                        <a href="http://localhost:3000/quotes" class="btn custom-btn custom-btn-bg">GET/quotes</a> 	&nbsp; <a>Return all quotes</a>
+                        <p></p>
+                        <a href="http://localhost:3000/quote/random" class="btn custom-btn custom-btn-bg">GET/quote/random</a>&nbsp; <a>Return a random quote </a>
+                        <p></p>
+
+                        <a href="http://localhost:3000/quote/total" class="btn custom-btn custom-btn-bg">GET/quote/total</a> &nbsp; <a>Return total number of quotes</a>
+                        <p></p>
+
+                        <a href="http://localhost:3000/quote/id/1" class="btn custom-btn custom-btn-bg">GET/quote/id/:id</a> &nbsp; <a>Return quote by its ID</a>
+                        <p></p>
+
+                        <a href="http://localhost:3000/quote/member/RM" class="btn custom-btn custom-btn-bg">GET/quote/member/:member</a> &nbsp; <a>Return an array of quotes by member </a>
+              
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+    <!-- FOOTER -->
+     <footer class="footer py-5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-lg-12 col-12">        
+                        <div style="text-align: center;">
+                            <a href= "https://github.com/oanhgle"><span class="iconify" data-icon="jam:github-circle" data-inline="false" style="font-size: 40px" title = "github profile"></span></a>
+                            <a href="https://www.linkedin.com/in/oanh-le-04a7b21a3/"><span class="iconify" data-icon="jam:linkedin-square" data-inline="false" style="font-size: 40px" title = "linkedin profile" ></span></a>
+                        </div>
+                        <p></p>                        
+                        <p class="copyright-text text-center">Copyright &copy; 2020 Oanh Le</p>
+                        
+                        <p class="copyright-text text-center">Built with <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a>
+                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://jquery.com/"> jQuery</a>
+                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://getbootstrap.com/"> Bootstrap</a>
+                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://iconify.design/icon-sets/uil/"> Iconify</a>
+                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="http://wicky.nillia.ms/headroom.js"> Headroom</a>
+                        </p>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+    <script type = "text/javascript" src= "js/app.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Headroom.js"></script>
+    <script src="js/jQuery.headroom.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/custom.js"></script>
+
+  </body>
+</html>
