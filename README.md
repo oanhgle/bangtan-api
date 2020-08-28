@@ -1,5 +1,5 @@
 # BTS QUOTES API 
-Simple Node.js API using Express framework to retrieve inspiration quotes from BTS
+Simple Node.js API using Express framework to retrieve inspirational quotes from BTS
 <br/>
 **Production Host:** Heroku
 <br/>
