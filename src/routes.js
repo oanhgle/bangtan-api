@@ -64,8 +64,8 @@ router.get('/quote/random', function (req, res){
 router.get('/i-purple-you', function (req, res) {
   purpleCount++;
   res.status(200).json({
-    message: 'i purple you 💜',
-    purple: purpleCount
+    message : "💜I PURPLE YOU 💜",
+    purpleCount: purpleCount
   })
 });
 
@@ -110,12 +110,12 @@ router.post('/quotes', (req, res) => {
 
 /*
  * post like
- */
+
 router.post('/i-purple-you', (req, res) =>  {
   purpleCount++;
   return res.status(200).json({status: "sucessfully"});
 });
-
+*/
 
 /*
 ***--------------------PATCH----------------------**
@@ -171,8 +171,8 @@ router.patch('/quote/id/:id', (req, res) => {
   });
 });
 
-/*--------------------DELETE-----------------------**
-router.delete('/:id', (req, res) => {
+/*--------------------DELETE-----------------------**/
+router.delete('/quotes/:id', (req, res) => {
   const id = req.params.id;
   for (let quotes of quotesDB) {
     if (quotes.id == id) {
@@ -184,6 +184,5 @@ router.delete('/:id', (req, res) => {
   }
   res.status(404).json({ error: 'invalid ID' });
 });
-*/
 
 module.exports = router;

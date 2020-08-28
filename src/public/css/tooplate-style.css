@@ -104,6 +104,31 @@ b, strong {
   color: #ffffff !important;
 }
 
+.custom-btn.custom-btn-bg-get{
+  background: #d3c5da;
+  color: #ffffff;
+}
+.custom-btn.custom-btn-bg-get:hover{
+  background: #b491c8;
+  color: #ffffff !important;
+}
+
+.custom-btn.custom-btn-bg-post{
+  background: #f2d1cf;
+  color: #ffffff;
+}
+.custom-btn.custom-btn-bg-post:hover{
+  background: #e9acab;
+  color: #ffffff !important;
+}
+.custom-btn.custom-btn-bg-patch{
+  background: #b3b2db;
+  color: #ffffff;
+}
+.custom-btn.custom-btn-bg-patch:hover{
+  background: #8480cf;
+  color: #ffffff !important;
+}
 .animated {
   position: relative;
 }

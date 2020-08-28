@@ -6,7 +6,7 @@ function getRandom()
         .then(data => {
             document.getElementById('quote').innerHTML = data.quote;
             document.getElementById('author').innerHTML = data.member;
-            console.log(data.quote + ' - ' + "data.member"); //for debugging
+            console.log(data.quote + ' - ' + data.member); //for debugging
             
             getInfo(data.quote);
 
