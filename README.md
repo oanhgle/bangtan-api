@@ -1,6 +1,8 @@
 # BTS QUOTES API 
 Simple Node.js API using Express framework to retrieve inspiration quotes from BTS
+<br/>
 **Production Host:** Heroku
+<br/>
 ✨Demo: https://bts-quotes-api.herokuapp.com/ 
 
 ## 🥯 API endpoints
@@ -16,6 +18,7 @@ Simple Node.js API using Express framework to retrieve inspiration quotes from B
 ### POST
 #### POST/quotes
 Post new quote to the collection
+<br/><br/>
 **Request body:**
 ```
 {
@@ -88,6 +91,7 @@ The server will run at `http://localhost:3000/`
 
 #### Available scripts
 Start the application `npm start `
+<br/>
 Start the development live-reload server `npm run dev `
 
 ## 🧀 Lisence
