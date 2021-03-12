@@ -1,0 +1,12 @@
+:root {
+  --color: #212529;
+  --bg-color: #ffffff;
+  --txt-color: #5b5b5b;
+}
+
+.navbar[class*="headroom--not-top"] {
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
