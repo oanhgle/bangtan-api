@@ -1,23 +1,13 @@
-/*
-
-Tooplate 2115 Marvel
-
-https://www.tooplate.com/view/2115-marvel
-
-*/
-
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
-
+/* Tooplate 2115 Marvel https://www.tooplate.com/view/2115-marvel */
 body {
   font-family: "Maven Pro", sans-serif;
   padding-top: 70px;
   background-color: var(--bg-color);
 }
-
 .full-screen {
   padding: 8rem 0;
 }
-
 .small-text {
   color: var(--color) !important;
   font-size: 14px;
@@ -25,7 +15,6 @@ body {
   border-radius: 50px;
   letter-spacing: 0.2px;
 }
-
 ul {
   margin: 0;
   padding: 0;
@@ -33,20 +22,17 @@ ul {
 ul li {
   list-style: none;
 }
-
 a {
   font-weight: normal;
   text-decoration: none !important;
   transition: all 0.4s ease;
 }
-
 p:not(.animated-info) {
   font-size: 18px;
   font-weight: 300;
   line-height: 1.5;
   color: var(--txt-color);
 }
-
 h1,
 h2,
 h3,
@@ -57,25 +43,21 @@ h6 {
   font-weight: bold;
   letter-spacing: -1px;
 }
-
 h1 {
   color: var(--color);
   font-size: 2.8em;
   margin: 24px 0;
 }
-
 h2 {
   color: var(--color);
   font-size: 2.4em;
   font-weight: bold;
 }
-
 h3,
 b,
 strong {
   font-weight: bold;
 }
-
 .custom-btn {
   background: #eee;
   color: #5b5b5b;
@@ -93,57 +75,46 @@ strong {
 }
 .custom-btn.custom-btn-bg {
   background: #c8b9bd;
-  color: #ffffff;
+  color: #fff;
 }
 .custom-btn.custom-btn-bg:hover {
   background: #b491c8;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .custom-btn.custom-btn-bg-get {
   background: #d3c5da;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 .custom-btn.custom-btn-bg-get:hover {
   background: #b491c8;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .custom-btn.custom-btn-bg-post {
   background: #f2d1cf;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .custom-btn.custom-btn-bg-post:hover {
   background: #e9acab;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .custom-btn.custom-btn-bg-patch {
   background: #b3b2db;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .custom-btn.custom-btn-bg-patch:hover {
   background: #8480cf;
-  color: #ffffff !important;
+  color: #fff !important;
 }
-
 .animated {
   display: flex;
   position: relative;
 }
-
 .animated-info {
   min-width: 260px;
   position: relative;
 }
-
 .animated-item {
   color: #b491c8;
-}
-
-.animated-item {
   font-size: 1.75rem;
   line-height: inherit;
   display: block;
@@ -155,15 +126,12 @@ strong {
   left: 0;
   animation: BottomTotop 6s linear infinite 0s;
 }
-
 .animated-item:nth-child(2n + 2) {
   animation-delay: 2s;
 }
-
 .animated-item:nth-child(3n + 3) {
   animation-delay: 4s;
 }
-
 @keyframes BottomTotop {
   0% {
     opacity: 0;
@@ -191,7 +159,6 @@ strong {
     opacity: 0;
   }
 }
-
 .navbar {
   position: fixed;
   top: 0;
@@ -201,46 +168,37 @@ strong {
   will-change: transform;
   transition: transform 200ms linear;
 }
-
 .navbar[class*="-unpinned"] {
   transform: translate(0, -150%);
 }
-
 .navbar[class*="-pinned"] {
   transform: translate(0, 0);
 }
-
 .navbar-brand {
   display: flex;
   font-weight: bold;
   color: var(--color) !important;
 }
-
 .navbar-brand h1 {
   margin-right: 1rem !important;
   font-size: 1.25rem;
 }
-
 .navbar-brand a {
   font-weight: bold;
   color: var(--color);
 }
-
 .navbar-brand a:hover {
   color: #b491c8 !important;
 }
 .navbar-brand .small-text {
   color: #c8b9bd !important;
 }
-
 .navbar-brand .uil {
   font-size: 40px;
 }
-
 .navbar-expand-sm .navbar-nav .nav-link {
   padding: 0 20px;
 }
-
 .nav-link {
   font-weight: bold;
   font-size: 16px;
@@ -257,7 +215,6 @@ strong {
   content: attr(data-hover);
   transform: translate3d(0, 0, 0);
 }
-
 .navbar-nav .nav-link:focus,
 .navbar-nav .nav-link:hover {
   color: #b491c8;
@@ -267,11 +224,9 @@ strong {
 .navbar-nav .nav-link:hover span {
   transform: translateY(-100%);
 }
-
 .navbar-toggler-icon {
   background: none;
 }
-
 .navbar-toggler {
   border: 0;
   padding: 0;
@@ -289,16 +244,13 @@ strong {
   transform: rotate(45deg);
   top: 6px;
 }
-
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-child(2) {
   display: none;
 }
-
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:last-child {
   transform: rotate(-45deg);
   bottom: 1px;
 }
-
 .navbar-toggler .navbar-toggler-icon {
   background: #212121;
   display: block;
@@ -308,28 +260,23 @@ strong {
   transition: all 0.4s ease;
   position: relative;
 }
-
 .footer a {
   color: var(--color);
 }
-
 .copyright-text {
   font-size: 16px;
   font-weight: normal;
   display: block;
 }
-
 .color-mode {
   font-weight: bold;
   cursor: pointer;
   color: var(--color);
 }
-
 .color-mode-icon {
   position: relative;
   right: 6px;
 }
-
 .color-mode-icon:after {
   font-family: "unicons";
   content: "\ea9f";
@@ -337,14 +284,12 @@ strong {
   font-weight: 300;
   font-style: normal;
 }
-
 .color-mode-icon.active:after {
   font-family: "unicons";
   content: "\eb65";
   font-size: 30px;
-  color: #ffffff;
+  color: #fff;
 }
-
 .social-links .uil {
   color: #f7f3f3;
   font-size: 20px;
@@ -354,16 +299,13 @@ strong {
 .social-links .uil:hover {
   color: #b491c8;
 }
-
 @media (max-width: 991px) {
   .full-screen {
     padding-bottom: 4rem;
   }
-
   .about-image {
     margin-top: 4em;
   }
-
   .mobile-mt-2 {
     margin-top: 2em;
   }
@@ -372,21 +314,17 @@ strong {
   h1 {
     font-size: 2.4em;
   }
-
   h2 {
     font-size: 2em;
   }
-
   .animated-item {
     font-size: 28px;
   }
-
   .navbar-collapse {
-    background: #ffffff;
+    background: #fff;
     text-align: center;
     padding-bottom: 20px;
   }
-
   .navbar-expand-sm .navbar-nav .nav-link {
     padding: 3px 20px;
   }
@@ -398,11 +336,9 @@ strong {
   .animated-item {
     font-size: 30px;
   }
-
   .custom-btn-group {
     text-align: center;
   }
-
   .custom-btn {
     display: block;
     margin: 10px 0;
@@ -412,19 +348,15 @@ strong {
   .animated-text {
     margin-top: 0;
   }
-
   .about-text {
     text-align: center;
   }
-
   .full-screen {
     padding: 4rem 0;
   }
-
   .mobile-block {
     display: block;
   }
-
   .social-links li {
     display: inline-block;
     vertical-align: top;
