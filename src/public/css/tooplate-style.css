@@ -288,7 +288,7 @@ strong {
   font-family: "unicons";
   content: "\eb65";
   font-size: 30px;
-  color: #fff;
+  color: var(--color);
 }
 .social-links .uil {
   color: #f7f3f3;

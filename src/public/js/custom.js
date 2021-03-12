@@ -8,32 +8,57 @@
     );
   }
 
+  const currentTheme = localStorage.getItem("theme");
+
   const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-  const currentTheme = localStorage.getItem("theme");
+  const light = document.querySelector(
+    `link[rel=stylesheet][media*=prefers-color-scheme][media*="light"]`
+  );
+  const dark = document.querySelector(
+    `link[rel=stylesheet][media*=prefers-color-scheme][media*="dark"]`
+  );
 
   if (currentTheme) {
     document.body.classList.toggle(currentTheme);
+    toggleTheme(currentTheme);
   } else {
-    document.body.classList.toggle(
-      prefersDarkScheme.matches ? "dark" : "light"
-    );
+    const currentTheme = prefersDarkScheme.matches ? "dark" : "light";
+    document.body.classList.toggle(currentTheme);
+    localStorage.setItem("theme", currentTheme);
   }
 
   $(".color-mode").click(function () {
     $(".color-mode-icon").toggleClass("active");
-    if (prefersDarkScheme.matches) {
-      document.body.classList.toggle("light");
-      const theme = document.body.classList.contains("light")
-        ? "light"
-        : "dark";
-      localStorage.setItem("theme", theme);
-    } else {
-      document.body.classList.toggle("dark");
-      const theme = document.body.classList.contains("dark") ? "dark" : "light";
-      localStorage.setItem("theme", theme);
-    }
+    const currentTheme = localStorage.getItem("theme");
+    const themes = {
+      dark: "light",
+      light: "dark",
+    };
+    document.body.classList.remove(currentTheme);
+    document.body.classList.add(themes[currentTheme]);
+
+    toggleTheme(themes[currentTheme]);
+
+    localStorage.setItem("theme", themes[currentTheme]);
   });
+
+  function toggleTheme(theme) {
+    switch (theme) {
+      case "light":
+        light.media = "all";
+        light.disabled = false;
+        dark.media = "not all";
+        dark.disabled = true;
+        break;
+      case "dark":
+        dark.media = "all";
+        dark.disabled = false;
+        light.media = "not all";
+        light.disabled = true;
+        break;
+    }
+  }
 
   // HEADER
   $(".navbar").headroom();
@@ -41,7 +66,7 @@
   // SMOOTHSCROLL
   $(function () {
     $(".nav-link, .custom-btn-link").on("click", function (event) {
-      var $anchor = $(this);
+      const $anchor = $(this);
       $("html, body")
         .stop()
         .animate(
