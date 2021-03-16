@@ -1,0 +1,16 @@
+:root {
+  --color: #ffffff;
+  --bg-color: #0c0c0d;
+  --txt-color: #ded3d3;
+  --image-filter: grayscale(50%);
+}
+
+/* Re-colorize and darken photographic images # */
+img:not([src*=".svg"]) {
+  filter: var(--image-filter);
+}
+
+.navbar[class*="headroom--not-top"] {
+  background: #0c0c0d;
+  border-bottom: 1px solid #1f1f1f;
+}

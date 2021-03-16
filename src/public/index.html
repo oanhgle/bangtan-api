@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,152 +11,209 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/unicons.css">
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-
+    <!--
+    Conditionally either load the light or the dark stylesheet. The matching file
+    will be downloaded with `highest`, the non-matching file with `lowest`
+    priority. If the browser doesn't support `prefers-color-scheme`, the media
+    query is unknown and the files are downloaded with `lowest` priority (but
+    above I already force `highest` priority for my default light experience).
+    -->
+    <link rel="stylesheet" href="css/light.css"
+        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+    <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/tooplate-style.css">
-    </head>
 
-    <body>
+    <script>
+        // If `prefers-color-scheme` is not supported, fall back to light mode.
+        // In this case, light.css will be downloaded with `highest` priority.
+        if (window.matchMedia('(prefers-color-scheme: dark)').media === 'not all') {
+            document.documentElement.style.display = 'none';
+            document.head.insertAdjacentHTML(
+                'beforeend',
+                '<link rel="stylesheet" href="css/light.css" onload="document.documentElement.style.display = \'\'">'
+            );
+        }
+    </script>
+
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+</head>
+
+<body>
     <!-- HEADER -->
-        <nav class="navbar navbar-expand-sm navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="index.html"> BTS QUOTES API </a>
-                <div style="text-align: center;">
-                    <a class="small-text navbar-brand" href="https://github.com/oanhgle/bangtan-api" style= "color: #c8b9bd;"> Purple <span class="iconify" data-icon="et:heart" data-inline="false"></span> me </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-lg-auto">
-                        <div class="ml-lg-4">
+    <nav class="navbar navbar-expand-sm">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1 class="m-0">
+                    <a class="" href="/"> BTS QUOTES API</a>
+                </h1>
+                <a class="small-text " href="https://github.com/oanhgle/bangtan-api">
+                Purple
+                <span class="iconify" data-icon="et:heart" data-inline="false"></span>
+                me </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-lg-auto">
+                    <div class="ml-lg-4">
                         <div class="color-mode d-lg-flex justify-content-center align-items-center">
                             <i class="color-mode-icon"></i>
                             Color mode
                         </div>
-                        </div>
-                    </ul>
-                </div>
+                    </div>
+                </ul>
             </div>
-        </nav>
-        
-        <!-- LIVE DEMO -->
-        <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
-            <div class="container">
-                <div class="row">
-                    <!-- TEXT -->
-                    <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
-                        <div class="about-text">
-                            <small class="small-text">Live<span class="mobile-block"> Demo</span></small>
-                            <h1 class="animated animated-text">
-                                <span class="mr-2">Get a random</span>
-                                <div class="animated-info">
-                                    <span class="animated-item">Quote</span>
-                                    <span class="animated-item">Message</span>
-                                    <span class="animated-item">Text</span>
-                                </div>
-                            </h1>
-                            <p>" <a id= "quote">No one knows tomorrow, but today we are the dream we followed yesterday</a> "</p>
-                            <p>&#128156;</p><a id= "author">Suga</a></p>
-                            <p>(<a id= "info">PUMA TURIN CF</a>)</p>
-                            <div class="custom-btn-group mt-4">
-                            <a href="http://twitter.com/intent/tweet/?text" class="btn mr-lg-2 custom-btn" id= "shareOnTW"><span class="iconify" data-icon="uil-twitter-alt" data-inline="false"></span>&nbsp; Tweet </a>
-                            <a href="#button" class="btn custom-btn custom-btn-bg" onclick = "getRandom()">New quote</a>
+        </div>
+    </nav>
+
+    <!-- LIVE DEMO -->
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+        <div class="container">
+            <div class="row">
+                <!-- TEXT -->
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
+                    <div class="about-text">
+                        <h2><small class="small-text">Live<span class="mobile-block"> Demo</span></small></h2>
+                        <h3 class="animated animated-text">
+                            <span class="mr-2">Get a random</span>
+                            <div class="animated-info">
+                                <span class="animated-item">Quote</span>
+                                <span class="animated-item">Message</span>
+                                <span class="animated-item">Text</span>
                             </div>
-                        </div>
-                    </div>
-                    <!-- IMAGE -->
-                    <div class="col-lg-5 col-md-12 col-12">
-                        <div class="about-image svg">
-                            <img src="https://www.pngkey.com/png/full/958-9580680_bts-logo-png-logo-de-bts-png.png" class="img-fluid" alt="bts logo">
+                        </h3>
+                        <p>"<a id="quote">No one knows tomorrow, but today we are the dream we followed yesterday</a>"
+                        </p>
+                        <p>&#128156;</p><span style="color: var(--color);" id="author">Suga</span></p>
+                        <p>(<a id="info">PUMA TURIN CF</a>)</p>
+                        <div class="custom-btn-group mt-4">
+                            <a href="http://twitter.com/intent/tweet/?text" class="btn mr-lg-2 custom-btn"
+                                id="shareOnTW"><span class="iconify" data-icon="uil-twitter-alt"
+                                    data-inline="false"></span>&nbsp; Tweet </a>
+                            <a href="#button" class="btn custom-btn custom-btn-bg" onclick="getRandom()">New quote</a>
                         </div>
                     </div>
                 </div>
+                <!-- IMAGE -->
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="about-image svg">
+                        <img src="https://www.pngkey.com/png/full/958-9580680_bts-logo-png-logo-de-bts-png.png"
+                            class="img-fluid" alt="bts logo">
+                    </div>
+                </div>
             </div>
-        </section>
-        
-        <!-- API DOCUMENTATION -->
-        <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+        </div>
+    </section>
+
+    <!-- API DOCUMENTATION -->
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
                     <div class="about-text">
-                            <small class="small-text">Documentation<span class="mobile-block"></span></small>
-                            <h1 class="animated animated-text">
-                                <span class="mr-2">API</span>
-                                    <div class="animated-info">
-                                        <span class="animated-item">Endpoints</span>
-                                        <span class="animated-item">Routes</span>
-                                        <span class="animated-item">Endpoints</span>
-                                        <span class="animated-item">Routes</span>
-                                    </div>
-                            </h1>
-                        
-                            <div class="custom-btn-group mt-4">
-                                <!-- GET routes -->
-                                <a href="https://bts-quotes-api.herokuapp.com/quotes" class="btn custom-btn custom-btn-bg-get">GET/quotes</a> 	&nbsp; <a>Return all quotes</a>
-                                <p></p>
-                                <a href="https://bts-quotes-api.herokuapp.com/quote/random" class="btn custom-btn custom-btn-bg-get">GET/quote/random</a>&nbsp; <a>Return a random quote </a>
-                                <p></p>
-                                <a href="https://bts-quotes-api.herokuapp.com/quote/total" class="btn custom-btn custom-btn-bg-get">GET/quote/total</a> &nbsp; <a>Return total number of quotes</a>
-                                <p></p>
-                                <a href="https://bts-quotes-api.herokuapp.com/quote/id/1" class="btn custom-btn custom-btn-bg-get">GET/quote/id/:id</a> &nbsp; <a>Return quote by its ID</a>
-                                <p></p>
-                                <a href="https://bts-quotes-api.herokuapp.com/quote/member/RM" class="btn custom-btn custom-btn-bg-get">GET/quote/member/:member</a> &nbsp; <a>Return an array of quotes by member </a>
-                                <p></p>
-                                <!-- POST routes -->
-                                <a class="btn custom-btn custom-btn-bg-post" style="color:white;">POST/quotes</a> 	&nbsp; <a>Post new quote to the collection</a>
-                                <p></p>
-                                <!-- PATCH routes -->
-                                <a class="btn custom-btn custom-btn-bg-patch" style= "color: white;">PATCH/quote/id/:id</a>&nbsp; <a>Modify existing quote by its ID </a>
-                                <p></p>
+                        <h2><small class="small-text">Documentation<span class="mobile-block"></span></small></h2>
+                        <h3 class="animated animated-text">
+                            <span class="mr-2">API</span>
+                            <p class="animated-info">
+                                <span class="animated-item">Endpoints</span>
+                                <span class="animated-item">Routes</span>
+                                <span class="animated-item">Endpoints</span>
+                                <span class="animated-item">Routes</span>
+                            </p>
+                        </h3>
 
-                            </div>
+                        <div class="custom-btn-group mt-4">
+                            <!-- GET routes -->
+                            <p>
+                                <a target="_blank" href="https://bts-quotes-api.herokuapp.com/quotes"
+                                    class="btn custom-btn custom-btn-bg-get">GET/quotes</a> &nbsp;
+                                <span>Return all quotes</span>
+                            </p>
+                            <p>
+                                <a target="_blank" href="https://bts-quotes-api.herokuapp.com/quote/random"
+                                    class="btn custom-btn custom-btn-bg-get">GET/quote/random</a>&nbsp;
+                                <span>Return a random quote </span>
+                            </p>
+                            <p>
+                                <a target="_blank" href="https://bts-quotes-api.herokuapp.com/quote/total"
+                                    class="btn custom-btn custom-btn-bg-get">GET/quote/total</a> &nbsp;
+                                <span>Return total number of quotes</span>
+                            </p>
+                            <p>
+                                <a target="_blank" href="https://bts-quotes-api.herokuapp.com/quote/id/1"
+                                    class="btn custom-btn custom-btn-bg-get">GET/quote/id/:id</a> &nbsp;
+                                <span>Return quote by its ID</span>
+                            </p>
+                            <p>
+                                <a target="_blank" href="https://bts-quotes-api.herokuapp.com/quote/member/RM"
+                                    class="btn custom-btn custom-btn-bg-get">GET/quote/member/:member</a> &nbsp;
+                                <span>Return an array of quotes by member </span>
+                            </p>
+                            <!-- POST routes -->
+                            <p>
+                                <a class="btn custom-btn custom-btn-bg-post">POST/quotes</a> &nbsp;
+                                <span>Post new quote to the collection</span>
+                            </p>
+                            <!-- PATCH routes -->
+                            <p>
+                                <a class="btn custom-btn custom-btn-bg-patch">PATCH/quote/id/:id</a>&nbsp;
+                                <span>Modify existing quote by its ID</span>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FOOTER -->
-        <footer class="footer py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-12">   
-                        <!-- PROFILE - SNS -->     
-                        <div style="text-align: center;">
-                            <a href = "https://bts-quotes-api.herokuapp.com/i-purple-you" class="btn custom-btn custom-btn-bg" >
-                                <span class="iconify" data-icon="uil:heart" data-inline="false"></span></a>
-                            <p></p>
-
-                            <a href= "https://github.com/oanhgle">
-                                <span class="iconify" data-icon="jam:github-circle" data-inline="false" style="font-size: 40px" title = "github profile"></span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/oanh-le-04a7b21a3/">
-                                <span class="iconify" data-icon="jam:linkedin-square" data-inline="false" style="font-size: 40px" title = "linkedin profile" ></span>
-                            </a>
-                        </div>
-                        <p></p>    
-                        <!-- COPYRIGHT --> 
-                        <p class="copyright-text text-center">Copyright &copy; 2020 Oanh Le</p>
-                        <p class="copyright-text text-center">Built with 
-                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a>
-                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://jquery.com/"> jQuery</a>
-                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://getbootstrap.com/"> Bootstrap</a>
-                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="https://iconify.design/icon-sets/uil/"> Iconify</a>
-                            <span class="iconify" data-icon="et:heart" data-inline="false" style= "color: #b491c8;"></span> <a href="http://wicky.nillia.ms/headroom.js"> Headroom</a>
+    <!-- FOOTER -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <!-- PROFILE - SNS -->
+                    <div class="text-center">
+                        <p>
+                            <a target="_blank" href="https://bts-quotes-api.herokuapp.com/i-purple-you"
+                            class="btn custom-btn custom-btn-bg ">
+                            <span class="iconify" data-icon="uil:heart" data-inline="false"></span></a>
                         </p>
-                    </div>   
+                        <a target="_blank" href="https://github.com/oanhgle">
+                            <span class="iconify" data-icon="jam:github-circle" data-inline="false"
+                                style="font-size: 40px" title="github profile"></span>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/oanh-le-04a7b21a3/">
+                            <span class="iconify" data-icon="jam:linkedin-square" data-inline="false"
+                                style="font-size: 40px" title="linkedin profile"></span>
+                        </a>
+                    </div>
+                    <!-- COPYRIGHT -->
+                    <p class="copyright-text text-center">Copyright &copy; 2020 Oanh Le</p>
+                    <p class="copyright-text text-center">Built with
+                        <span class="iconify" data-icon="et:heart" data-inline="false" style="color: #b491c8;"></span>
+                        <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a>
+                        <span class="iconify" data-icon="et:heart" data-inline="false" style="color: #b491c8;"></span>
+                        <a href="https://jquery.com/"> jQuery</a>
+                        <span class="iconify" data-icon="et:heart" data-inline="false" style="color: #b491c8;"></span>
+                        <a href="https://getbootstrap.com/"> Bootstrap</a>
+                        <span class="iconify" data-icon="et:heart" data-inline="false" style="color: #b491c8;"></span>
+                        <a href="https://iconify.design/icon-sets/uil/"> Iconify</a>
+                        <span class="iconify" data-icon="et:heart" data-inline="false" style="color: #b491c8;"></span>
+                        <a href="http://wicky.nillia.ms/headroom.js"> Headroom</a>
+                    </p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- SCRIPTS -->
-        <script type = "text/javascript" src= "js/app.js"></script>
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/Headroom.js"></script>
-        <script src="js/jQuery.headroom.js"></script>
-        <script src="js/smoothscroll.js"></script>
-        <script src="js/custom.js"></script>
-    </body>
+    <!-- SCRIPTS -->
+    <script src="js/app.js" defer></script>
+    <script src="js/jquery-3.3.1.min.js" defer></script>
+    <script src="js/popper.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/Headroom.js" defer></script>
+    <script src="js/jQuery.headroom.js" defer></script>
+    <script src="js/smoothscroll.js" defer></script>
+    <script src="js/custom.js" defer></script>
+</body>
+
 </html>
