@@ -7,7 +7,7 @@ Simple Node.js API using Express framework to retrieve inspirational quotes from
 
 ## 🥯 API endpoints
 ### GET
-|Endpoints | Description| |
+|Endpoints | Description| Example|
 | ------ | ------ | ------ |
 |**GET/quotes** | return all quotes| https://bts-quotes-api.herokuapp.com/quotes
 |**GET/quote/random**|return a random quote| https://bts-quotes-api.herokuapp.com/quote/random
