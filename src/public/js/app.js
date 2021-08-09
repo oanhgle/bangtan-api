@@ -1,9 +1,13 @@
+/* share on twitter */
 function tweet() {
   const quote = document.getElementById("quote").innerHTML;
   const author = document.getElementById("author").innerHTML;
   const info = document.getElementById("info").innerHTML;
+  const fullText = `${quote} - ${author} (${info})`;
   window.open(
-    `https://twitter.com/intent/tweet?text=${quote} - ${author} (${info})&hashtags=BTSQUOTESAPI`
+    `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      fullText
+    )}&hashtags=BTSQUOTESAPI`
   );
 }
 
@@ -15,13 +19,7 @@ function getRandom() {
       document.getElementById("quote").innerHTML = data.quote;
       document.getElementById("author").innerHTML = data.member;
       console.log(data.quote + " - " + data.member); //for debugging
-
       getInfo(data.quote);
-
-      //share on twitter
-      document.getElementById("shareOnTW").href =
-        "http://twitter.com/intent/tweet/?text=" +
-        encodeURIComponent(data.quote + " - " + data.member);
     })
     .catch((err) => console.log(err));
 }
