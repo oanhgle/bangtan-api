@@ -253,5 +253,4 @@ module.exports = [
     "member" : "Jungkook",
     "info" : "BTS Begins Program Book"
   },
-  
 ];

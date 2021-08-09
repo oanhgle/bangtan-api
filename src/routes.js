@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const quotesDB = require("./data/data");
+let quotesDB = require("./data/data");
 let purpleCount = 0;
 
 /*
@@ -17,17 +17,14 @@ router.get("/quotes", function (req, res) {
  * return quote by its id
  */
 router.get("/quote/id/:id", function (req, res) {
-  const search_id = req.params.id;
-  for (let bangtan of quotesDB) {
-    if (bangtan.id === search_id) {
-      return res.status(200).json({
-        quote: bangtan.quote,
-        member: bangtan.member,
-        info: bangtan.info,
-      });
-    }
-  }
-  res.status(404).json({ error: "invalid ID" });
+  // search for quote by id
+  const quote = quotesDB.find(
+    (quote) => parseInt(quote.id) === parseInt(req.params.id)
+  );
+  if (!quote) return res.status(404).json({ error: "quote not found" });
+  return res.status(200).json({
+    ...quote,
+  });
 });
 
 /*
@@ -35,32 +32,32 @@ router.get("/quote/id/:id", function (req, res) {
  */
 router.get("/quote/member/:member", function (req, res) {
   const search_member = req.params.member;
-  console.log(search_member);
-  let obj = quotesDB
-    .filter(
-      (bangtan) => bangtan.member.toLowerCase() === search_member.toLowerCase()
-    )
-    .map((bangtan) => bangtan.quote);
-  obj === undefined || obj.length == 0
-    ? res.status(404).json({ error: "member not found" })
-    : res.status(200).json(obj);
+
+  // check if member is in quotesDB
+  let quotes = quotesDB.filter((bangtan) => bangtan.member === search_member);
+
+  if (!quotes.length)
+    return res.status(404).json({ error: "member not found" });
+
+  quotes = quotes.map((bangtan) => bangtan.quote);
+
+  return res.status(200).json(quotes);
 });
 
 /*
  * return total number of quotes
  */
 router.get("/quote/total", function (req, res) {
-  var num = Object.keys(quotesDB).length;
-  return res.status(200).json("Total number of quotes: " + num);
+  const total = quotesDB.length;
+  return res.status(200).json("Total number of quotes: " + total);
 });
 
 /*
  * return a random quote
  */
 router.get("/quote/random", function (req, res) {
-  var random = quotesDB[Math.floor(Math.random() * quotesDB.length)];
+  const random = quotesDB[Math.floor(Math.random() * quotesDB.length)];
   res.status(200).json({ quote: random.quote, member: random.member });
-  console.log(random.quote);
 });
 
 /*
@@ -70,7 +67,7 @@ router.get("/i-purple-you", function (req, res) {
   purpleCount++;
   res.status(200).json({
     message: "💜I PURPLE YOU 💜",
-    purpleCount: purpleCount,
+    purpleCount,
   });
 });
 
@@ -138,63 +135,57 @@ router.post('/i-purple-you', (req, res) =>  {
 router.patch("/quote/id/:id", (req, res) => {
   const quote_id = req.params.id;
   const quote_update = req.body;
-  var arr = [];
 
-  for (let quote of quotesDB) {
-    if (quote.id == quote_id) {
-      arr.push("id: " + quote_id);
-      if (quote_update.id != null || undefined) {
-        return res
-          .status(405)
-          .json({ error: "you're not allowed to update id" });
-      }
-      if (quote_update.quote != null || undefined) {
-        quote.quote = quote_update.quote;
-        arr.push("\nquote: " + quote.quote);
-      }
-      if (quote_update.member != null || undefined) {
-        let obj = quotesDB.filter(
-          (bangtan) => bangtan.member === quote_update.member
-        );
-        if (obj === undefined || obj.length == 0) {
-          return res.status(404).json({ error: "invalid member" });
-        } else {
-          quote.member = quote_update.member;
-          arr.push("\nmember: " + quote.member);
-        }
-      }
-      if (quote_update.info != null || undefined) {
-        quote.info = quote_update.info;
-        arr.push("\ninfo: " + quote.info);
-      }
+  // fail if quote doesn't exist
+  let target_quote = quotesDB.findIndex(
+    (bangtan) => parseInt(bangtan.id) === parseInt(quote_id)
+  );
 
-      console.log("Updated!");
-      return res
-        .status(200)
-        .send(
-          "Message: Successfully updated *^^* Thank you 💜\n*---Here is your reciept---*\n" +
-            arr +
-            "\n"
-        );
-    }
+  if (target_quote === -1) {
+    return res.status(404).json({ error: "quote doesn't exist" });
   }
-  res.status(404).json({
-    error: "invalid id",
+
+  if (Object.keys(quote_update).includes("id")) {
+    return res
+      .status(405)
+      .json({ error: "it is not allowed to update the id" });
+  }
+
+  // fail to post if member's name is invalid
+  if (!quotesDB.find((bangtan) => bangtan.member === quote_update.member)) {
+    return res.status(404).json({ error: "invalid member" });
+  }
+
+  if (!quote_update.quote || !quote_update.info) {
+    return res.status(404).json({ error: "quote and info cannot be empty" });
+  }
+
+  // update the quote in DB
+  quotesDB[target_quote] = { ...quotesDB[target_quote], ...quote_update };
+
+  return res.status(200).json({
+    message: "Successfully updated *^^* Thank you 💜",
+    quote: quotesDB[target_quote],
   });
 });
 
 /*--------------------DELETE-----------------------**/
 router.delete("/quotes/:id", (req, res) => {
   const id = req.params.id;
-  for (let quotes of quotesDB) {
-    if (quotes.id == id) {
-      quotesDB.splice(quotesDB.indexOf(quotes), 1);
-      return res.status(200).json({
-        message: "Deleted! ",
-      });
-    }
+  // delete from array by id
+  const newQuotes = quotesDB.filter(
+    (bangtan) => parseInt(bangtan.id) !== parseInt(id)
+  );
+
+  if (newQuotes.length === quotesDB.length) {
+    return res.status(404).json({ error: "quote doesn't exist" });
   }
-  res.status(404).json({ error: "invalid ID" });
+
+  quotesDB = newQuotes;
+
+  return res.status(200).json({
+    message: "Deleted! ",
+  });
 });
 
 module.exports = router;
