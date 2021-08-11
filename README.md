@@ -7,7 +7,7 @@ Simple Node.js API using Express framework to retrieve inspirational quotes from
 
 ## 🥯 API endpoints
 ### GET
-|Endpoints | Description| |
+|Endpoints | Description| Example|
 | ------ | ------ | ------ |
 |**GET/quotes** | return all quotes| https://bts-quotes-api.herokuapp.com/quotes
 |**GET/quote/random**|return a random quote| https://bts-quotes-api.herokuapp.com/quote/random
@@ -20,7 +20,7 @@ Simple Node.js API using Express framework to retrieve inspirational quotes from
 Post new quote to the collection
 <br/><br/>
 **Request body:**
-```
+```json
 {
     "quote" : " ",
     "member" : " ",
@@ -29,7 +29,7 @@ Post new quote to the collection
 ```
 **Example call:**
 
-```
+```bash
 curl -X POST -i -H "Content-Type: application/json" -d '{
     "quote" : "This is quote",
     "member" : "RM",
@@ -42,7 +42,7 @@ Modify existing quote by its id
 > id is mandatory in the request body
 
 **Example call:**
-```
+```bash
 curl -X PATCH -i -H "Content-Type: application/json" -d '{
   "id" : "1",
   "info": "This is how you modify info for quote id 1"
@@ -52,7 +52,7 @@ curl -X PATCH -i -H "Content-Type: application/json" -d '{
 #### Example: Get a random quote 
 
 **fetch:**
-``` bash
+``` javascript
 fetch('https://bts-quotes-api.herokuapp.com/quote/random')
     .then(response => response.json())
     .then(data => {
@@ -60,14 +60,14 @@ fetch('https://bts-quotes-api.herokuapp.com/quote/random')
     }).catch(err => console.log(err));
 ```
 **JQuery:**
-``` bash
+``` javascript
 $.getJSON('https://bts-quotes-api.herokuapp.com/quote/random', function(data){
     console.log(data.quote + ' - ' + data.member);
 })
 ```
 
 **async/await:**
-``` bash
+``` javascript
 async function getRandom(){
     const response = await fetch('https://bts-quotes-api.herokuapp.com/quote/random');
     const data = await response.json();

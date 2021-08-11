@@ -1,15 +1,15 @@
 const express = require('express');
-const bodyparser = require('body-parser');
 const app = express();
 const routes = require('./routes');
 var path    = require("path");
 const port = process.env.PORT || 3000; 
 
 /*
- * bodyParser middleware
+ * middleware
+ * If you are using Express 4.16+ you don't have to import body-parser anymore.
  */
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 /*
  * indent prettified JSON
