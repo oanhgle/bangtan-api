@@ -107,7 +107,7 @@ router.post("/quotes", (req, res) => {
     .status(201)
     .send(
       "Message: Quote is added *^^* Thank you 💜\n*---Here is your reciept---*\nid: " +
-        req.body.id +
+        num +
         "\nquote: " +
         req.body.quote +
         "\nmember: " +
